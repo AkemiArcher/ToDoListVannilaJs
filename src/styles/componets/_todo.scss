@@ -1,0 +1,75 @@
+@use "../helpers" as *;
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  width: 100%;
+  max-width: 25.25rem;
+  min-height: 26.8125rem;
+  padding: 1.5rem;
+  background-color: var(--color-white);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  &__title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  &__form {
+    display: flex;
+    column-gap: 1rem;
+  }
+
+  &__field {
+    width: 100%;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 1rem;
+    font-weight: 600;
+  }
+
+  &__delete-all-button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    @include hover() {
+      color: var(--color-grey-4);
+    }
+
+    &:not(.is-visible) {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__list,
+  &__empty-message {
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__list {
+    --todoListRowGap: 0.5rem;
+
+    display: grid;
+    row-gap: var(--todoListRowGap);
+  }
+
+  &__empty-message {
+    text-align: center;
+    color: var(--color-grey-4);
+  }
+
+}

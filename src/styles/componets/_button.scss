@@ -1,0 +1,21 @@
+@use "../helpers" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  height: var(--input-height);
+  padding: 0.75rem;
+  color: var(--color-grey-1);
+  background-color: var(--color-dark-2);
+  border: 0.0625rem solid var(--color-dark-2);
+  border-radius: var(--border-radius);
+
+  @include hover() {
+    color: var(--color-grey-2);
+    background-color: transparent;
+  }
+
+  &:active {
+    scale: 1.05;
+  }
+}

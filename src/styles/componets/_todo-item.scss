@@ -1,0 +1,100 @@
+@use "../helpers" as *;
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding-left: 0.625rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  transition-duration: var(--trasition-duraction);
+
+  @include hover() {
+    background-color: var(--color-grey-1);
+  }
+
+  &.is-disappearing {
+    opacity: 0;
+    translate: 0 - 75%;
+    transition-duration: calc(var(--trasition-duraction) * 2);
+    pointer-events: none;
+
+    & ~ .todo-item {
+      translate: 0 calc((100% + var(--todoListRowGap)) * -1);
+      transition-delay: var(--trasition-duraction);
+      transition-duration: var(--trasition-duraction);
+      pointer-events: none;
+    }
+  }
+
+  &__checkbox {
+    flex-shrink: 0;
+    appearance: none;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+    border: 0.0625rem solid var(--color-grey-4);
+    border-radius: 0.25rem;
+
+    &:not(:checked) {
+      &::after {
+        opacity: 0;
+      }
+    }
+
+    &:checked {
+      background-color: var(--color-dark-2);
+      border-color: var(--color-dark-2);
+
+      & + .todo-item__label {
+        color: var(--color-grey-4);
+        text-decoration: line-through;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      width: 1rem;
+      height: 1rem;
+      background: url('../../assets/icons/icon-check.svg') center/contain no-repeat;
+    }
+  }
+
+  &__label {
+    width: 100%;
+    pointer-events: none;
+  }
+
+  &__delete-button {
+    flex-shrink: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: auto;
+    padding: 0;
+    color: var(--color-grey-4);
+    background-color: transparent;
+    border-radius: inherit;
+    border: none;
+
+    @include hover() {
+      color: var(--color-white);
+      background-color: var(--color-dark-1);
+    }
+
+    &:active {
+      scale: 1.05;
+    }
+
+    * {
+      pointer-events: none;
+    }
+  }
+}
